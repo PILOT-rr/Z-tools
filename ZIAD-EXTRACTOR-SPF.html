@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1020">
+<title>Z Tools — Unified Workspace</title>
+<script>(function(){try{if(localStorage.getItem('ziad_theme')==='light')document.documentElement.classList.add('light-preload')}catch(e){}})();</script>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Open navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <div class="brand"><strong>Z</strong><span>TOOLS</span></div>
+      <div class="context"><span class="context-label">Workspace</span><span class="context-sep">/</span><strong id="currentModule">Overview</strong></div>
+    </div>
+    <div class="topbar-actions">
+      <div class="global-search"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg></span><input id="globalSearch" type="search" aria-controls="commandModal" placeholder="Search Z Tools..." aria-label="Search Z Tools"></div>
+      <span class="status-pill"><span class="dot" id="statusDot"></span><span id="statusText">READY</span></span>
+      <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme"><span id="themeIcon"></span><span id="themeLabel">Dark</span></button>
+      <button class="icon-btn" id="helpBtn" type="button" aria-label="Help"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.7 2.7 0 1 1 4.3 2.2c-1.1.7-1.8 1.2-1.8 2.8M12 17h.01"/></svg></button>
+    </div>
+  </header>
+  <div class="app-body">
+    <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+      <div class="sidebar-section"><div class="sidebar-label">WORKSPACE</div>
+        <button class="side-btn active" data-view="home" type="button"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-6h6v6"/></svg></span><b>Overview</b></button>
+        <button class="side-btn" data-view="extract" type="button"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg></span><b>Extract</b></button>
+        <button class="side-btn" data-view="spf" type="button"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span><b>SPF Checker</b></button>
+        <button class="side-btn" data-view="rdns" type="button"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M10 5h9v9"/></svg></span><b>rDNS Lookup</b></button>
+        <button class="side-btn" data-view="analytics" type="button"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg></span><b>Analytics</b></button>
+      </div>
+      <div class="sidebar-section system-nav"><div class="sidebar-label">SYSTEM</div>
+        <button class="side-btn" data-view="settings" type="button"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m19 13 2 1-2 3-2-1-2 1v2h-6v-2l-2-1-2 1-2-3 2-1v-2l-2-1 2-3 2 1 2-1V5h6v2l2 1 2-1 2 3-2 1v2Z"/></svg></span><b>Settings</b></button>
+        <button class="side-btn" id="helpNav" type="button"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.7 2.7 0 1 1 4.3 2.2c-1.1.7-1.8 1.2-1.8 2.8M12 17h.01"/></svg></span><b>Help</b></button>
+      </div>
+      <div class="sidebar-footer"><span class="sidebar-mark">Z</span><span><strong>Z Tools</strong><small>Unified workspace</small></span></div>
+    </aside>
+    <div class="workspace">
+      <main>
+    <section class="view active" id="view-home">
+      <div class="home-hero card">
+        <div><div class="eyebrow">Z TOOLS WORKSPACE</div><h1>One workspace for extraction, DNS intelligence and analysis.</h1><p>Use every capability without leaving the application: Extract, SPF Checker, rDNS Lookup and Analytics share the same interface, theme and navigation.</p></div>
+        <div class="home-actions"><button class="btn primary" data-go="extract" type="button">Start Extract</button><button class="btn" data-go="spf" type="button">Check SPF</button></div>
+      </div>
+      <div class="home-grid section">
+        <button class="module-card card" data-go="extract" type="button"><span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg></span><span><strong>Extract</strong><small>Extract domains, URLs, IPs and emails from raw data.</small></span></button>
+        <button class="module-card card" data-go="spf" type="button"><span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span><span><strong>SPF Checker</strong><small>Inspect SPF records with DNS-over-HTTPS and batch processing.</small></span></button>
+        <button class="module-card card" data-go="rdns" type="button"><span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M10 5h9v9"/></svg></span><span><strong>rDNS Lookup</strong><small>Investigate reverse DNS with queue, retry, timeout and resume.</small></span></button>
+        <button class="module-card card" data-go="analytics" type="button"><span class="module-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6"/><rect x="14" y="4" width="6" height="6"/><rect x="4" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/></svg></span><span><strong>Analytics</strong><small>Analyze mailing performance, snapshots, trends and exports.</small></span></button>
+      </div>
+      <div class="card section home-note"><div><div class="section-title">RECENT ACTIVITY</div><div id="recentActivity" class="recent-activity">No recent activity.</div></div><span class="badge bblue" id="overviewState">READY</span></div>
+    </section>
+
+    <section class="view" id="view-extract">
+      <div class="grid">
+        <div class="card">
+          <div class="card-head">
+            <div class="section-title"><span class="title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v14H5zM8 9h8M8 13h8M8 17h5"/></svg></span> INPUT</div>
+            <span class="hint" id="extractChars">0 chars</span>
+          </div>
+          <textarea id="extractInput" class="big-input" aria-label="Extraction input" placeholder="Paste logs, URLs, domains, IPs, emails"></textarea>
+          <div class="drop" id="extractDrop"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7l2 2h9v9a2 2 0 0 1-2 2H3z"/></svg></span> Drop .txt file here or click to select</div>
+          <input id="extractFile" type="file" accept=".txt,text/plain" hidden>
+          <div class="toolbar">
+            <button class="btn primary" id="extractAll" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 8-12h-6z"/></svg> Extract All</button>
+            <button class="btn" data-extract="domains" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-6h6v6"/></svg> Domains</button>
+            <button class="btn" data-extract="urls" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg> URLs</button>
+            <button class="btn" data-extract="ipv4" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h8"/></svg> IPv4</button>
+            <button class="btn" data-extract="ipv6" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h8"/></svg> IPv6</button>
+            <button class="btn" data-extract="emails" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg> Emails</button>
+            <button class="btn danger" id="extractClear" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg> Clear</button>
+          </div>
+          <div class="settings compact-settings">
+            <label class="setting"><input type="checkbox" id="liveExtract"> <span>Live extraction</span></label>
+            <span class="hint">Off by default for large inputs</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head result-head">
+            <div class="section-title"><span class="title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v14H5zM8 9h8M8 13h8M8 17h5"/></svg></span> EXTRACTED <span id="extractCount">0</span> ITEMS</div>
+            <div class="filters" id="extractFilters">
+              <button class="filter active" data-filter="all" type="button">All</button>
+              <button class="filter" data-filter="domains" type="button">Domains</button>
+              <button class="filter" data-filter="urls" type="button">URLs</button>
+              <button class="filter" data-filter="ipv4" type="button">IPs</button>
+              <button class="filter" data-filter="emails" type="button">Emails</button>
+            </div>
+          </div>
+          <div class="result-actions">
+            <button class="btn" id="sendToSpf" type="button">SEND DOMAINS TO SPF</button>
+            <button class="btn" id="copyExtract" type="button">COPY</button>
+            <button class="btn" id="downloadExtract" type="button">TXT</button>
+          </div>
+          <div class="search-wrap"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg></span><input id="extractSearch" class="search-input" placeholder="Search extracted results"></div>
+          <div class="table-wrap extract-table"><table><thead><tr><th>TYPE</th><th>VALUE</th></tr></thead><tbody id="extractBody"><tr><td colspan="2" class="empty">Nothing extracted yet.</td></tr></tbody></table></div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <div class="section-title">EXTRACT STATS</div>
+        <div class="stats">
+          <div class="stat"><div class="num blue" id="xUrls">0</div><div class="label">URLS</div></div>
+          <div class="stat"><div class="num green" id="xDomains">0</div><div class="label">DOMAINS</div></div>
+          <div class="stat"><div class="num" id="x4">0</div><div class="label">IPv4</div></div>
+          <div class="stat"><div class="num" id="x6">0</div><div class="label">IPv6</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-spf">
+      <div class="grid">
+        <div class="card">
+          <div class="section-title"><span class="title-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path d="m19 13 2 1-2 3-2-1-2 1v2h-6v-2l-2-1-2 1-2-3 2-1v-2l-2-1 2-3 2 1 2-1V5h6v2l2 1 2-1 2 3-2 1v2Z"/></svg></span> CHECK CONFIGURATION</div>
+          <div class="field"><label>SPF token</label><input class="input" id="spfToken" value="" placeholder="e.g. example.com" aria-label="SPF token or include domain"></div>
+          <div class="field"><label>Domains</label><textarea id="domainInput" class="domain-input" aria-label="Domains to check" placeholder="one-domain.com&#10;another-domain.com"></textarea><div class="hint" id="domainHint">0 unique domains</div></div>
+          <div class="row">
+            <label class="btn file-btn"><input id="spfFile" type="file" accept=".txt,.csv,text/plain,text/csv" hidden> IMPORT TXT/CSV</label>
+            <button class="btn" id="pasteDomains" type="button">PASTE</button>
+            
+          </div>
+          <div class="toolbar">
+            <button class="btn primary" id="startBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg> START CHECK</button>
+            <button class="btn warn" id="pauseBtn" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14M17 5v14"/></svg> PAUSE</button>
+            <button class="btn danger" id="stopBtn" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1"/></svg> STOP</button>
+            <button class="btn" id="clearBtn" type="button">CLEAR</button>
+          </div>
+          <div class="settings">
+            <label class="setting">Concurrency <input class="input small-input" id="concurrency" type="number" value="20" min="1" max="50"></label>
+            <label class="setting">Timeout <input class="input small-input" id="timeout" type="number" value="5000" min="1000" step="500"></label>
+            <label class="setting">Retry <input class="input small-input" id="retry" type="number" value="1" min="0" max="4"></label>
+            <label class="setting">Match <select class="small-input" id="matchMode"><option value="include" selected>Include</option><option value="exact">Exact</option><option value="domain">Domain</option><option value="contains">Contains</option></select></label>
+            <label class="setting">Resolver <select class="small-input" id="resolver"><option value="auto">Auto</option><option value="google">Google</option><option value="cloudflare">Cloudflare</option></select></label>
+            <label class="setting"><input type="checkbox" id="checkMx"> MX</label>
+            <label class="setting"><input type="checkbox" id="autoSave" checked> Auto-save</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="section-title">SCAN STATUS</div><span class="mini" id="progressLabel">0 / 0</span></div>
+          <div class="progress"><div class="bar" id="progressBar"></div></div>
+          <div class="between mini"><span id="elapsed">Elapsed: 00:00:00</span><span id="speed">Speed: 0/s</span><span id="eta">ETA: —</span></div>
+          <div class="stats scan-stats">
+            <div class="stat"><div class="num" id="statTotal">0</div><div class="label">TOTAL</div></div>
+            <div class="stat"><div class="num green" id="statFound">0</div><div class="label">FOUND</div></div>
+            <div class="stat"><div class="num red" id="statNotFound">0</div><div class="label">NOT FOUND</div></div>
+            <div class="stat"><div class="num yellow" id="statErrors">0</div><div class="label">ERRORS</div></div>
+          </div>
+          <div class="section"><div class="notice" id="resumeNotice" style="display:none"><b>Saved scan available.</b> <span id="resumeInfo"></span><div class="toolbar"><button class="btn primary" id="resumeBtn" type="button">RESUME</button><button class="btn" id="discardBtn" type="button">DISCARD</button></div></div></div>
+          <div class="metric-row section"><span>Average response</span><b id="avg">—</b></div>
+          <div class="metric-row"><span>Successful DNS responses</span><b id="success">—</b></div>
+        </div>
+      </div>
+
+      <div class="card section">
+        <div class="between">
+          <div class="filters" id="spfFilters"><button class="filter active" data-filter="all" type="button">All</button><button class="filter" data-filter="FOUND" type="button">Found</button><button class="filter" data-filter="NOT_FOUND" type="button">Not Found</button><button class="filter" data-filter="ERROR" type="button">Error</button></div>
+          <div class="table-controls"><div class="search-wrap table-search"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg></span><input class="search-input" id="resultSearch" placeholder="Search domain"></div><select class="reason-select" id="reasonFilter" aria-label="Filter by reason"><option value="all">All reasons</option><option>TIMEOUT</option><option>NXDOMAIN</option><option>NO_SPF</option><option>MULTIPLE_SPF</option><option>SERVFAIL</option><option>RATE_LIMIT</option><option>HTTP_ERROR</option><option>NETWORK_ERROR</option><option>NO_MATCH</option><option>MATCH</option></select></div>
+        </div>
+        <div class="toolbar export-bar"><button class="btn" id="exportAll" type="button">EXPORT ALL CSV</button><button class="btn" id="exportFound" type="button">FOUND CSV</button><button class="btn" id="exportNotFound" type="button">NOT FOUND CSV</button><button class="btn" id="exportErrors" type="button">ERROR CSV</button><button class="btn" id="exportJsonl" type="button">JSONL</button><button class="btn" id="copyFound" type="button">COPY FOUND</button><button class="btn" id="copyNotFound" type="button">COPY NOT FOUND</button><button class="btn" id="retryErrors" type="button">RETRY ERRORS</button></div>
+        <div class="between mini"><span id="tableInfo">Showing 0–0 of 0</span><div class="row"><button class="btn page-btn" id="prevPage" type="button" disabled></button><button class="btn page-btn" id="nextPage" type="button" disabled></button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>DOMAIN</th><th>SPF</th><th>STATUS</th><th>REASON</th><th>LOOKUPS</th><th>MX</th><th>RESPONSE</th><th>RESOLVER</th><th>CHECKED AT</th></tr></thead><tbody id="resultsBody"><tr><td colspan="9" class="empty">No results yet.</td></tr></tbody></table></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-rdns"><z-rdns-module></z-rdns-module></section>
+
+    <section class="view" id="view-analytics"><z-analytics-module></z-analytics-module></section>
+
+    <section class="view" id="view-settings">
+      <div class="card settings-page">
+        <div class="eyebrow">SYSTEM</div><h1>Settings</h1><p class="hint">Application-level preferences for the shared Z Tools workspace.</p>
+        <div class="settings-grid">
+          <div class="settings-block"><strong>Appearance</strong><label class="setting-row"><span>Theme</span><button class="btn" id="settingsTheme" type="button">Cycle theme</button></label><label class="setting-row"><span>Reduce animations</span><input id="reduceAnimations" type="checkbox"></label><p>Dark, Light and System modes share the same component language.</p></div>
+          <div class="settings-block"><strong>Navigation</strong><label class="setting-row"><span>Compact sidebar</span><input id="compactSidebar" type="checkbox"></label><label class="setting-row"><span>Remember last workspace</span><input id="rememberWorkspace" type="checkbox" checked></label></div>
+          <div class="settings-block"><strong>Behavior</strong><label class="setting-row"><span>Notifications</span><input id="notificationsEnabled" type="checkbox" checked></label><label class="setting-row"><span>Confirm destructive actions</span><input id="confirmDestructive" type="checkbox" checked></label><label class="setting-row"><span>Auto-save SPF</span><input id="autoSaveSetting" type="checkbox" checked></label></div>
+          <div class="settings-block"><strong>Data</strong><div class="setting-actions"><button class="btn" id="exportSettings" type="button">Export Settings</button><button class="btn" id="importSettings" type="button">Import Settings</button><input id="settingsFile" type="file" accept=".json,application/json" hidden></div><p>Settings export contains preferences only; scan results stay local.</p></div>
+          <div class="settings-block"><strong>Storage</strong><div id="storageSummary" class="storage-summary">Calculating local storage...</div><div class="setting-actions"><button class="btn danger" id="clearSpfData" type="button">Clear SPF Data</button><button class="btn danger" id="clearAnalyticsData" type="button">Clear Analytics</button><button class="btn danger" id="clearAllData" type="button">Clear All Local Data</button></div></div>
+          <div class="settings-block"><strong>Diagnostics</strong><div id="diagnosticsSummary" class="storage-summary">Not run</div><div class="setting-actions"><button class="btn" id="runDiagnostics" type="button">Run Diagnostics</button><button class="btn" id="copyDiagnostics" type="button">Copy Report</button></div></div>
+          <div class="settings-block"><strong>About</strong><div class="storage-summary"><b>Z Tools 4.0.0</b><br>Local / Offline-first<br>IndexedDB + LocalStorage<br>Storage schema 4</div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="helpModal"><div class="modal-box"><div class="between"><div class="section-title">HELP</div><button class="btn" id="closeHelp" type="button">CLOSE</button></div><div class="notice">EXTRACT finds domains, URLs, IPv4, IPv6 and emails. Large inputs are parsed manually by default and only the first 1,000 rows are rendered.</div><div class="notice">SPF CHECKER uses DNS-over-HTTPS with Google and Cloudflare. AUTO tries Google first and falls back when the request fails. MX is optional.</div><div class="notice">FOUND means the requested token matched. NOT FOUND means DNS worked but no requested match was found. ERROR means the DNS/request failed or the domain has multiple SPF records.</div><div class="notice">Results are paginated and saved incrementally in IndexedDB when Auto-save is enabled.</div></div></div>
+<div class="modal command-modal" id="commandModal" aria-hidden="true">
+  <div class="modal-box command-box" role="dialog" aria-modal="true" aria-labelledby="commandTitle">
+    <div class="command-head"><div><div class="section-title" id="commandTitle">COMMAND PALETTE</div><div class="hint">Search modules and actions</div></div><button class="btn" id="closeCommand" type="button">ESC</button></div>
+    <input class="input command-input" id="commandInput" type="search" aria-controls="commandList" autocomplete="off" placeholder="Type a command">
+    <div class="command-list" id="commandList"></div>
+  </div>
+</div>
+<div class="modal" id="diagnosticsModal"><div class="modal-box"><div class="between"><div class="section-title">DIAGNOSTICS</div><button class="btn" id="closeDiagnostics" type="button">CLOSE</button></div><pre id="diagnosticsReport" class="diagnostics-report">No diagnostics run.</pre></div></div><div class="toast" id="toast"></div>
+<script>
+window.ZToolsRuntime={notifications:localStorage.getItem('ztools_notifications')!=='false'};
+window.ZToolsNotify=function(message,type){
+  const critical=type==='error'||type==='critical';
+  if(!critical && window.ZToolsRuntime.notifications===false)return;
+  const host=document.getElementById('toast'); if(!host)return;
+  const el=document.createElement('div'); el.className='toast-item '+(type||''); el.textContent=message; host.appendChild(el);
+  setTimeout(function(){el.remove()},type==='error'||type==='critical'?6000:3200);
+};
+</script>
+<script src="rdns-module.js" defer></script>
+<script src="analytics-module.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
